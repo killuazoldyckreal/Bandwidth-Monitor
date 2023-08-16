@@ -7,6 +7,8 @@
 
 The Network Bandwidth Monitor is a Python program that allows you to monitor your network bandwidth usage and display various network statistics in a graphical user interface (GUI). It uses the Tkinter library for creating the GUI and the Scapy library for capturing network packets.
 
+**Original Creator:** [waterrmalann](https://github.com/waterrmalann)
+
 ## Features
 
 - Real-time monitoring of total upload and download data
@@ -49,3 +51,7 @@ This program is open-source and distributed under the [MIT License](LICENSE).
 ## Disclaimer
 
 Please note that this program is provided as-is and may not cover all use cases or scenarios. Use it at your own risk. The program may require additional configuration or customization based on your specific requirements.
+
+## Credits
+
+Original Program: [waterrmalann/Network-Bandwidth-Monitor](https://github.com/waterrmalann/NetworkBandwidthMonitor)
