@@ -1,0 +1,4 @@
+tk
+pywin32
+scapy
+psutil
