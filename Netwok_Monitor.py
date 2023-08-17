@@ -4,6 +4,7 @@ from scapy.all import *
 import os
 import psutil
 from collections import defaultdict
+from win32api import GetMonitorInfo, MonitorFromPoint
 
 KB = float(1024)
 MB = float(KB ** 2)
@@ -11,7 +12,7 @@ GB = float(KB ** 3)
 TB = float(KB ** 4)
 all_macs = {iface.mac for iface in ifaces.values()}
 
-WINDOW_SIZE = (240, 320)
+WINDOW_SIZE = (240, 280)
 WINDOW_RESIZEABLE = True  
 REFRESH_DELAY = 1500
 
@@ -34,8 +35,11 @@ window.attributes("-topmost", True)
 screen_width = window.winfo_screenwidth()
 screen_height = window.winfo_screenheight()
 
+monitor_info = GetMonitorInfo(MonitorFromPoint((0,0)))
+work_area = monitor_info.get("Work")[3]
+
 window_x = screen_width - WINDOW_SIZE[0]
-window_y = 0
+window_y = work_area - WINDOW_SIZE[1]
 
 window.geometry(f"{WINDOW_SIZE[0]}x{WINDOW_SIZE[1]}+{window_x}+{window_y}")
 window.resizable(width=WINDOW_RESIZEABLE, height=WINDOW_RESIZEABLE)
