@@ -1,4 +1,3 @@
-
 # Network Bandwidth Monitor
 
 ![Screenshot](screenshot.png)
@@ -27,12 +26,12 @@ The Network Bandwidth Monitor is a Python program that allows you to monitor you
 
 1. Clone the repository or download the source code.
 2. Install the required Python libraries by running:
+   ```shell
+   pip install -r requirements.txt
    ```
-   pip install scapy psutil
-   ```
-3. Run the program by executing the `bandwidth_monitor.py` script:
-   ```
-   python bandwidth_monitor.py
+3. Run the program by executing the `Network_Monitor.py` script:
+   ```shell
+   python Network_Monitor.py
    ```
 4. The GUI window will open, displaying network statistics in real-time.
 5. To exit the program, simply close the GUI window.
@@ -41,8 +40,8 @@ The Network Bandwidth Monitor is a Python program that allows you to monitor you
 
 You can customize the program by modifying the script. For example:
 
-- Adjust the `REFRESH_DELAY` constant to change the update interval.
-- Implement the `process_packet(packet)` function to add packet processing logic.
+- Adjust the `REFRESH_DELAY` constant in the script to change the update interval.
+- Implement the `process_packet(packet)` function in the script to add packet processing logic.
 
 ## License
 
