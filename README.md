@@ -1,56 +1,75 @@
 # Network Bandwidth Monitor
 
-![Screenshot](screenshot.png)
+A simple network bandwidth monitor that displays current network usage and speeds.
 
-## Overview
+This project is based on the original work by [Waterrmalann](#credits), with modifications to provide a more compact and user-friendly interface.
 
-The Network Bandwidth Monitor is a Python program that allows you to monitor your network bandwidth usage and display various network statistics in a graphical user interface (GUI). It uses the Tkinter library for creating the GUI and the Scapy library for capturing network packets.
+## Table of Contents
 
-**Original Creator:** [waterrmalann](https://github.com/waterrmalann)
+- [Description](#description)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Automatic Startup](#automatic-startup)
+- [Credits](#credits)
+- [License](#license)
+
+## Description
+
+The Network Bandwidth Monitor is a Python-based program that allows you to monitor your network usage, upload speed, and download speed in real-time. The program creates a small window on your screen that displays this information in a concise and user-friendly format.
 
 ## Features
 
-- Real-time monitoring of total upload and download data
-- Display of current upload and download speeds
-- Calculation and display of total network usage
-- Customizable refresh interval for updating statistics
+- Real-time monitoring of network usage, upload speed, and download speed.
+- Compact and non-intrusive interface that can be placed anywhere on the screen.
+- Automatic startup option to launch the program on computer boot.
 
-## Requirements
+## Getting Started
 
-- Python 3.x
-- Tkinter library (usually included with Python)
-- Scapy library (to capture network packets)
-- Psutil library (to gather network I/O counters)
+### Prerequisites
 
-## Installation and Usage
+- Python 3.x installed on your system.
+- `psutil` library installed. You can install it using the following command:
+  ```
+  pip install psutil
+  ```
 
-1. Clone the repository or download the source code.
-2. Install the required Python libraries by running:
-   ```shell
-   pip install -r requirements.txt
+### Installation
+
+1. Clone or download this repository to your local machine.
+2. Navigate to the project directory:
    ```
-3. Run the program by executing the `Network_Monitor.py` script:
-   ```shell
-   python Network_Monitor.py
+   cd network_monitor
    ```
-4. The GUI window will open, displaying network statistics in real-time.
-5. To exit the program, simply close the GUI window.
+3. Save the `network_monitor.py` file with a `.pyw` extension. This prevents the console window from opening when the program is launched.
+4. Create an executable (.exe) file using PyInstaller:
+   ```
+   pyinstaller --onefile network_monitor.pyw
+   ```
+5. A `dist` directory will be created containing the executable file.
+6. To run the program, double-click the generated `network_monitor.exe` file.
 
-## Customization
+## Usage
 
-You can customize the program by modifying the script. For example:
+1. Run the program as described in the [Installation](#installation) section.
+2. The monitor window will display current network usage, upload speed, and download speed.
+3. To close the program, simply close the monitor window.
 
-- Adjust the `REFRESH_DELAY` constant in the script to change the update interval.
-- Implement the `process_packet(packet)` function in the script to add packet processing logic.
+## Automatic Startup
 
-## License
+To automatically start the Network Bandwidth Monitor when your computer boots up:
 
-This program is open-source and distributed under the [MIT License](LICENSE).
-
-## Disclaimer
-
-Please note that this program is provided as-is and may not cover all use cases or scenarios. Use it at your own risk. The program may require additional configuration or customization based on your specific requirements.
+1. Create a shortcut of the `network_monitor.exe` file.
+2. Press `Win + R` to open the Run dialog, and enter `shell:startup` to open the Startup folder.
+3. Paste the shortcut into the Startup folder.
+4. The program will now start automatically every time your computer starts.
 
 ## Credits
 
-Original Program: [waterrmalann/Network-Bandwidth-Monitor](https://github.com/waterrmalann/NetworkBandwidthMonitor)
+This project is based on the original work by [Waterrmalann](https://github.com/waterrmalann). The original version of the program can be found [here](https://github.com/waterrmalann/NetworkBandwidthMonitor).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
