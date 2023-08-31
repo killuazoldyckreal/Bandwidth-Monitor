@@ -62,9 +62,8 @@ The Network Bandwidth Monitor is a Python-based program that allows you to monit
 To automatically start the Network Bandwidth Monitor when your computer boots up:
 
 1. Create a shortcut of the `network_monitor.exe` file.
-2. Press `Win + R` to open the Run dialog, and enter `shell:startup` to open the Startup folder.
-3. Paste the shortcut into the Startup folder.
-4. The program will now start automatically every time your computer starts.
+2. Paste the shortcut into the Startup folder (C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp).
+3. The program will now start automatically every time your computer starts.
 
 ## Credits
 
