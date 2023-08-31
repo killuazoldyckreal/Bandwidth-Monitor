@@ -1,7 +1,7 @@
 # Network Bandwidth Monitor
 
 A simple network bandwidth monitor that displays current network usage and speeds.
-![Screenshot](winscreenshot.png | width=600 height=358)
+<img src="winscreenshot.png" alt="Screenshot" width="600" height="358">
 This project is based on the original work by [Waterrmalann](#credits), with modifications to provide a more compact and user-friendly interface.
 
 ## Table of Contents
