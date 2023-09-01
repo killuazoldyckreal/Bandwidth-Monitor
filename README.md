@@ -41,15 +41,15 @@ The Network Bandwidth Monitor is a Python-based program that allows you to monit
 1. Clone or download this repository to your local machine.
 2. Navigate to the project directory:
    ```
-   cd network_monitor
+   cd Bandwidth_Monitor
    ```
-3. Save the `network_monitor.py` file with a `.pyw` extension. This prevents the console window from opening when the program is launched.
+3. Save the `Bandwidth_Monitor.py` file with a `.pyw` extension. This prevents the console window from opening when the program is launched.
 4. Create an executable (.exe) file using PyInstaller:
    ```
-   pyinstaller --onefile network_monitor.pyw
+   pyinstaller --onefile Bandwidth_Monitor.pyw
    ```
 5. A `dist` directory will be created containing the executable file.
-6. To run the program, double-click the generated `network_monitor.exe` file.
+6. To run the program, double-click the generated `Bandwidth_Monitor.exe` file.
 
 ## Usage
 
@@ -61,7 +61,7 @@ The Network Bandwidth Monitor is a Python-based program that allows you to monit
 
 To automatically start the Network Bandwidth Monitor when your computer boots up:
 
-1. Create a shortcut of the `network_monitor.exe` file.
+1. Create a shortcut of the `Bandwidth_Monitor.exe` file.
 2. Paste the shortcut into the Startup folder (C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp).
 3. The program will now start automatically every time your computer starts.
 
