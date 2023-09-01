@@ -1,26 +1,25 @@
+from tkinter import PhotoImage
 import tkinter as tk
 from threading import Thread
-from scapy.all import *
 import os
 import psutil
-from collections import defaultdict
 from win32api import GetMonitorInfo, MonitorFromPoint
 
 KB = float(1024)
 MB = float(KB ** 2)
 GB = float(KB ** 3)
 TB = float(KB ** 4)
-all_macs = {iface.mac for iface in ifaces.values()}
 
-WINDOW_SIZE = (240, 280)
-WINDOW_RESIZEABLE = True  
+WINDOW_SIZE = (525, 30)
+WINDOW_RESIZEABLE = True 
 REFRESH_DELAY = 1500
 
 last_upload, last_download, upload_speed, down_speed = 0, 0, 0, 0
+
 def size(B):
     B = float(B)
     if B < KB:
-        return f"{B} Bytes"
+        return f"{B:.2f} Bytes"
     elif KB <= B < MB:
         return f"{B/KB:.2f} KB"
     elif MB <= B < GB:
@@ -29,12 +28,26 @@ def size(B):
         return f"{B/GB:.2f} GB"
     elif TB <= B:
         return f"{B/TB:.2f} TB"
+prev_x = 0
+prev_y = 0
+
+def start_drag(event):
+    global prev_x, prev_y
+    prev_x, prev_y = event.x_root, event.y_root
+
+def on_drag(event):
+    global prev_x, prev_y
+    x, y = event.x_root - prev_x, event.y_root - prev_y
+    window.geometry(f"+{window.winfo_x() + x}+{window.winfo_y() + y}")
+    prev_x, prev_y = event.x_root, event.y_root
+    
 window = tk.Tk()
 window.title("Network Bandwidth Monitor")
 window.attributes("-topmost", True)
+window.overrideredirect(True)
 screen_width = window.winfo_screenwidth()
 screen_height = window.winfo_screenheight()
-
+image = PhotoImage(file='drag.png')
 monitor_info = GetMonitorInfo(MonitorFromPoint((0,0)))
 work_area = monitor_info.get("Work")[3]
 
@@ -44,41 +57,22 @@ window_y = work_area - WINDOW_SIZE[1]
 window.geometry(f"{WINDOW_SIZE[0]}x{WINDOW_SIZE[1]}+{window_x}+{window_y}")
 window.resizable(width=WINDOW_RESIZEABLE, height=WINDOW_RESIZEABLE)
 
-label_total_upload_header = tk.Label(text="Total Upload:", font="Quicksand 12 bold")
-label_total_upload_header.pack()
-label_total_upload = tk.Label(text="Calculating...", font="Quicksand 12")
-label_total_upload.pack()
-
-label_total_download_header = tk.Label(text="Total Download:", font="Quicksand 12 bold")
-label_total_download_header.pack()
-label_total_download = tk.Label(text="Calculating...", font="Quicksand 12")
-label_total_download.pack()
-
-label_total_usage_header = tk.Label(text="Total Network Usage:", font="Quicksand 12 bold")
-label_total_usage_header.pack()
-label_total_usage = tk.Label(text="Calculating...\n", font="Quicksand 12")
-label_total_usage.pack()
-
-label_upload_header = tk.Label(text="Upload Speed:", font="Quicksand 12 bold")
-label_upload_header.pack()
-label_upload = tk.Label(text="Calculating...", font="Quicksand 12")
-label_upload.pack()
-
-label_download_header = tk.Label(text="Download Speed:", font="Quicksand 12 bold")
-label_download_header.pack()
-label_download = tk.Label(text="Calculating...", font="Quicksand 12")
-label_download.pack()
-
-def process_packet(packet):
-    pass
-
-def start_packet_capture():
-    while True:
-        sniff(filter="tcp or udp and (portrange 1-65535)", prn=process_packet, count=1, store=0)
-
-packet_capture_thread = Thread(target=start_packet_capture)
-packet_capture_thread.daemon = True
-packet_capture_thread.start()
+label_usage = tk.Label(text="Usage:",font="Quicksand 12 bold")
+label_usage.grid(row=1,column=1)
+usagedata = tk.Label(text="Calculating...", font="Quicksand 12",fg="gray")
+usagedata.grid(row=1,column=2)
+uplabel = tk.Label(text="| ⬆ Speed:", font="Quicksand 12 bold")
+uplabel.grid(row=1,column=3)
+updata = tk.Label(text="Calculating...", font="Quicksand 12", fg="#32CD30")
+updata.grid(row=1,column=4)
+downlabel = tk.Label(text="| ⬇ Speed:", font="Quicksand 12 bold")
+downlabel.grid(row=1,column=5)
+downdata = tk.Label(text="Calculating...", font="Quicksand 12", fg="#FF2511")
+downdata.grid(row=1,column=6)
+dragwin = tk.Label(window, image=image)
+dragwin.grid(row=1, column=0)
+dragwin.bind("<ButtonPress-1>", start_drag)
+dragwin.bind("<B1-Motion>", on_drag)
 
 def update():
     global last_upload, last_download, upload_speed, down_speed
@@ -103,18 +97,9 @@ def update():
     last_upload = upload
     last_download = download
 
-    label_total_upload["text"] = f"{size(upload)}"
-    label_total_download["text"] = f"{size(download)}"
-    label_total_usage["text"] = f"{size(total)}\n"
-
-    label_upload["text"] = size(upload_speed)
-    label_download["text"] = size(down_speed)
-
-    label_total_upload.pack()
-    label_total_download.pack()
-    label_total_usage.pack()
-    label_upload.pack()
-    label_download.pack()
+    usagedata["text"] = f"{size(total)}"
+    updata["text"] = f"{size(upload_speed)}"
+    downdata["text"] = f"{size(down_speed)}"
 
     window.after(REFRESH_DELAY, update)
 
