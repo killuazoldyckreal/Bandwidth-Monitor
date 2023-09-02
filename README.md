@@ -55,7 +55,7 @@ The Network Bandwidth Monitor is a Python-based program that allows you to monit
 
 1. Run the program as described in the [Installation](#installation) section.
 2. The monitor window will display current network usage, upload speed, and download speed.
-3. To close the program, simply close the monitor window.
+3. To close the program, click on the monitor window and then press `Alt+F4`.
 
 ## Automatic Startup
 
