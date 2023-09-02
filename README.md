@@ -35,6 +35,10 @@ The Network Bandwidth Monitor is a Python-based program that allows you to monit
   ```
   pip install psutil
   ```
+- `pyinstaller` to create an executable (.exe) file. You can install it using the following command:
+  ```
+  pip install pyinstaller
+  ```
 
 ### Installation
 
