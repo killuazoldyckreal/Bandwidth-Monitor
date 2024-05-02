@@ -24,6 +24,7 @@ The Network Bandwidth Monitor is a Python-based program that allows you to monit
 
 - Real-time monitoring of network usage, upload speed, and download speed.
 - Compact and non-intrusive interface that can be placed anywhere on the screen.
+- Dynamic opacity adjustment of the monitor window based on user activity
 - Automatic startup option to launch the program on computer boot.
 
 ## Getting Started
